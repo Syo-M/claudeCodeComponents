@@ -1,0 +1,32 @@
+.weather {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.divider {
+  color: var(--color-border-strong);
+  user-select: none;
+  font-size: var(--font-size-xs);
+}
+
+.temp {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.loading,
+.error {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}

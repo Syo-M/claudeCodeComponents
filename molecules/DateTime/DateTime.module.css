@@ -1,0 +1,25 @@
+.datetime {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.date {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+.divider {
+  color: var(--color-border-strong);
+  user-select: none;
+  font-size: var(--font-size-xs);
+}
+
+.time {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}

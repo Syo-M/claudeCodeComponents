@@ -1,0 +1,68 @@
+/* ── 基底 ── */
+.spinner {
+  display: inline-block;
+  border-style: solid;
+  border-radius: var(--radius-full);
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ── サイズ ── */
+.sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.md {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+/* ── カラー ── */
+.current {
+  border-color: currentColor;
+  border-top-color: transparent;
+}
+
+.accent {
+  border-color: var(--color-accent);
+  border-top-color: transparent;
+}
+
+.white {
+  border-color: #ffffff;
+  border-top-color: transparent;
+}
+
+/* ── アニメーション ── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── モーション軽減対応 ── */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+    opacity: 0.5;
+    /* アニメーション停止時は border-top も同色にして全円表示 */
+    border-top-color: currentColor;
+  }
+
+  .accent {
+    border-top-color: var(--color-accent);
+  }
+
+  .white {
+    border-top-color: #ffffff;
+  }
+}

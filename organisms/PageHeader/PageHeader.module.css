@@ -1,0 +1,116 @@
+/* PageHeader: アプリページ上部ヘッダー */
+
+.header {
+  background: var(--color-surface-raised);
+  border-bottom: 1px solid var(--color-border);
+  /* ヘッダーは常に最前面に表示 */
+  position: relative;
+  z-index: 10;
+}
+
+/* 内側コンテナ：中央揃え・最大幅制限 */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* ブランド名 */
+.brand {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 150ms;
+}
+
+.brand:hover {
+  color: var(--color-accent-hover);
+}
+
+.brand:focus-visible {
+  outline: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-focus);
+}
+
+/* ナビゲーション */
+.nav {
+  flex: 1;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ナビリンク */
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-sub);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  /* アクティブ下ボーダー用の疑似要素のため相対配置 */
+  position: relative;
+  transition: color 150ms, background 150ms;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 2px;
+  background: transparent;
+  border-radius: 2px;
+  transition: background 150ms;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.navLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* アクティブ状態 */
+.navLinkActive {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+.navLinkActive::after {
+  background: var(--color-accent);
+}
+
+.navLinkActive:hover {
+  color: var(--color-accent-hover);
+  background: var(--color-accent-bg);
+}
+
+/* 右端アクション */
+.actions {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}

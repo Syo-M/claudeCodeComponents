@@ -1,0 +1,43 @@
+/* ── 基底 ── */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  font-weight: var(--font-weight-medium);
+  user-select: none;
+}
+
+/* ── フォールバック（頭文字）── */
+.fallback {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+/* ── サイズ ── */
+.sm {
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-xs);
+}
+
+.md {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-sm);
+}
+
+.lg {
+  width: 40px;
+  height: 40px;
+  font-size: var(--font-size-md);
+}
+
+.xl {
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-xl);
+}

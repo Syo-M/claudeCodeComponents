@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* 必須マーク（*） */
+.required {
+  color: var(--color-error);
+}
+
+/* 入力要素を包むコンテナ */
+.fieldBody {
+  display: contents;
+}
+
+/* エラーメッセージ */
+.errorText {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin: 0;
+}
+
+/* ヒントテキスト */
+.hintText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}

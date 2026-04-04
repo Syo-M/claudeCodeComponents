@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- サイズバリアント --- */
+.sm {
+  padding: var(--space-6) var(--space-4);
+  gap: var(--space-2);
+}
+
+.md {
+  padding: var(--space-10) var(--space-6);
+  gap: var(--space-3);
+}
+
+.lg {
+  padding: var(--space-16) var(--space-8);
+  gap: var(--space-4);
+}
+
+/* --- アイコン背景の円 --- */
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background-color: var(--color-muted);
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+
+.sm .iconWrap {
+  width: 40px;
+  height: 40px;
+}
+
+.md .iconWrap {
+  width: 56px;
+  height: 56px;
+}
+
+.lg .iconWrap {
+  width: 72px;
+  height: 72px;
+}
+
+/* --- テキスト --- */
+.title {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+}
+
+.sm .title {
+  font-size: var(--font-size-sm);
+}
+
+.md .title {
+  font-size: var(--font-size-md);
+}
+
+.lg .title {
+  font-size: var(--font-size-lg);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  max-width: 360px;
+}
+
+.lg .description {
+  font-size: var(--font-size-md);
+  max-width: 480px;
+}
+
+/* --- アクション --- */
+.action {
+  margin-top: var(--space-1);
+}

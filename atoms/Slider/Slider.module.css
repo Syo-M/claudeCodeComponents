@@ -1,0 +1,105 @@
+/* ── ラッパー ── */
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── トラック（背景） ── */
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--slider-track, var(--color-muted));
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── 進捗バー ── */
+.fill {
+  height: 100%;
+  background: var(--slider-fill, var(--color-accent));
+  border-radius: var(--radius-full);
+  transition: width 50ms linear;
+}
+
+/* ── ネイティブ range input（透明にしてトラック上に重ねる） ── */
+.input {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+/* ── サムネイル: WebKit ── */
+.input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--slider-fill, var(--color-accent));
+  border: 2px solid var(--color-surface-raised);
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.input:hover::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+.input:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--shadow-focus);
+}
+
+.input:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+/* ── サムネイル: Firefox ── */
+.input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--slider-fill, var(--color-accent));
+  border: 2px solid var(--color-surface-raised);
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.input:hover::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+.input:focus-visible::-moz-range-thumb {
+  box-shadow: var(--shadow-focus);
+}
+
+/* ── Firefox のトラックを非表示 ── */
+.input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+/* ── WebKit のトラックを非表示 ── */
+.input::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+}

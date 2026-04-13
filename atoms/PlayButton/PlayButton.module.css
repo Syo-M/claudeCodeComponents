@@ -1,0 +1,65 @@
+/* ── 基底 ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  flex-shrink: 0;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  transform: scale(1.06);
+}
+
+.btn:active:not(:disabled) {
+  background: var(--color-accent-active);
+  transform: scale(0.96);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 再生中は少しだけ色を変える */
+.btn.playing {
+  background: var(--color-text-secondary);
+}
+
+.btn.playing:hover:not(:disabled) {
+  background: var(--color-text);
+}
+
+/* ── サイズ ── */
+.sm {
+  width: 36px;
+  height: 36px;
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+}
+
+.lg {
+  width: 60px;
+  height: 60px;
+}
+
+/* ── アイコン ── */
+.icon {
+  width: 50%;
+  height: 50%;
+}

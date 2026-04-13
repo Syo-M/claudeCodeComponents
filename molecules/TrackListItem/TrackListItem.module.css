@@ -1,0 +1,97 @@
+/* ── 基底 ── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.item:hover {
+  background: var(--color-surface);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* ── 選択状態 ── */
+.item.active {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.item.active:hover {
+  background: var(--color-accent-bg);
+}
+
+/* ── インデックス番号 ── */
+.index {
+  flex-shrink: 0;
+  width: 24px;
+  text-align: right;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.active .index {
+  color: var(--color-accent);
+}
+
+/* ── メインコンテンツ ── */
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sub {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.active .sub {
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+
+/* ── 再生中インジケーター ── */
+.indicator {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+}
+
+/* ── 右端コンテンツ ── */
+.trailing {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.active .trailing {
+  color: var(--color-accent);
+}

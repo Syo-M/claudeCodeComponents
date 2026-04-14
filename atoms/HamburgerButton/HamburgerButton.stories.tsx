@@ -10,6 +10,11 @@ const meta: Meta<typeof HamburgerButton> = {
       description: { component: 'ドロワーメニュー用ハンバーガーボタン。クリックで3本線 ↔ × にアニメーション。aria-expanded 対応。' },
     },
   },
+  argTypes: {
+    isOpen: { control: 'boolean' },
+    size: { control: 'number' },
+    label: { control: 'text' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px' }}><Story /></div>],
 }
 
@@ -17,11 +22,12 @@ export default meta
 type Story = StoryObj<typeof HamburgerButton>
 
 export const インタラクティブ: Story = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false)
+  args: { isOpen: false, size: 44 },
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(args.isOpen ?? false)
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(o => !o)} />
+        <HamburgerButton key={String(args.isOpen)} {...args} isOpen={isOpen} onClick={() => setIsOpen(o => !o)} />
         <span style={{ fontSize: '14px', color: '#8C8078' }}>
           {isOpen ? 'メニュー開いています' : 'メニュー閉じています'}
         </span>

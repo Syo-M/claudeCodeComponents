@@ -10,6 +10,14 @@ const meta: Meta<typeof Select> = {
       description: { component: 'セレクトボックス Atom。グループ化・プレースホルダー・エラー・ヒントに対応。' },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+    placeholder: { control: 'text' },
+    error: { control: 'text' },
+    hint: { control: 'text' },
+    required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px', maxWidth: '360px' }}><Story /></div>],
 }
 
@@ -25,16 +33,25 @@ const prefectures = [
 ]
 
 export const 基本: Story = {
-  render: () => {
+  args: {
+    label: '都道府県',
+    placeholder: '選択してください',
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
-    return <Select label="都道府県" options={prefectures} value={value} onChange={setValue} placeholder="選択してください" />
+    return <Select {...args} options={prefectures} value={value} onChange={setValue} />
   },
 }
 
 export const 必須: Story = {
-  render: () => {
+  args: {
+    label: '都道府県',
+    placeholder: '選択してください',
+    required: true,
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
-    return <Select label="都道府県" options={prefectures} value={value} onChange={setValue} placeholder="選択してください" required />
+    return <Select {...args} options={prefectures} value={value} onChange={setValue} />
   },
 }
 
@@ -58,16 +75,40 @@ export const グループ付き: Story = {
 }
 
 export const エラー: Story = {
-  render: () => <Select label="都道府県" options={prefectures} value="" onChange={() => {}} error="選択してください" />,
+  args: {
+    label: '都道府県',
+    error: '選択してください',
+  },
+  render: (args) => {
+    const [value, setValue] = useState('')
+    return <Select {...args} options={prefectures} value={value} onChange={setValue} />
+  },
 }
 
 export const ヒント付き: Story = {
-  render: () => {
+  args: {
+    label: 'タイムゾーン',
+    hint: '後から変更できます',
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
-    return <Select label="タイムゾーン" options={[{ value: 'jst', label: 'Asia/Tokyo (JST)' }, { value: 'utc', label: 'UTC' }]} value={value} onChange={setValue} hint="後から変更できます" />
+    return (
+      <Select
+        {...args}
+        options={[{ value: 'jst', label: 'Asia/Tokyo (JST)' }, { value: 'utc', label: 'UTC' }]}
+        value={value}
+        onChange={setValue}
+      />
+    )
   },
 }
 
 export const 無効: Story = {
-  render: () => <Select label="変更不可" options={prefectures} value="osaka" onChange={() => {}} disabled />,
+  args: {
+    label: '変更不可',
+    disabled: true,
+  },
+  render: (args) => (
+    <Select {...args} options={prefectures} value="osaka" onChange={() => {}} />
+  ),
 }

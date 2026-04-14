@@ -12,35 +12,33 @@ const meta: Meta<typeof Chip> = {
       },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+    variant: { control: 'select', options: ['selectable', 'deletable', 'static'] },
+    selected: { control: 'boolean' },
+  },
 }
 
 export default meta
 type Story = StoryObj<typeof Chip>
 
 export const Selectable: Story = {
-  render: () => {
-    const [selected, setSelected] = useState(false)
+  args: { label: '選択可能', variant: 'selectable', selected: false },
+  render: (args) => {
+    const [selected, setSelected] = useState(args.selected ?? false)
     return (
       <div style={{ padding: '16px' }}>
-        <Chip
-          label="選択可能"
-          variant="selectable"
-          selected={selected}
-          onSelect={() => setSelected(s => !s)}
-        />
+        <Chip key={String(args.selected)} {...args} selected={selected} onSelect={() => setSelected(s => !s)} />
       </div>
     )
   },
 }
 
 export const Deletable: Story = {
-  render: () => (
+  args: { label: '削除できます', variant: 'deletable' },
+  render: (args) => (
     <div style={{ padding: '16px' }}>
-      <Chip
-        label="削除できます"
-        variant="deletable"
-        onDelete={() => alert('削除')}
-      />
+      <Chip {...args} onDelete={() => alert('削除')} />
     </div>
   ),
 }

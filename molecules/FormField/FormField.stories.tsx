@@ -13,6 +13,12 @@ const meta: Meta<typeof FormField> = {
       },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+    error: { control: 'text' },
+    hint: { control: 'text' },
+    required: { control: 'boolean' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px', maxWidth: '360px' }}><Story /></div>],
 }
 
@@ -63,68 +69,93 @@ function SampleInput({
 }
 
 export const 通常: Story = {
-  render: () => {
+  args: {
+    label: '名前',
+    htmlFor: 'name-normal',
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
     return (
-      <FormField label="名前" htmlFor="name-normal">
-        <SampleInput id="name-normal" value={value} onChange={setValue} placeholder="山田 太郎" />
+      <FormField {...args}>
+        <SampleInput id={args.htmlFor} value={value} onChange={setValue} placeholder="山田 太郎" />
       </FormField>
     )
   },
 }
 
 export const エラーあり: Story = {
-  render: () => {
+  args: {
+    label: 'ユーザー名',
+    htmlFor: 'username-error',
+    error: '2文字以上で入力してください',
+  },
+  render: (args) => {
     const [value, setValue] = useState('a')
     return (
-      <FormField label="ユーザー名" htmlFor="username-error" error="2文字以上で入力してください">
-        <SampleInput id="username-error" value={value} onChange={setValue} hasError />
+      <FormField {...args}>
+        <SampleInput id={args.htmlFor} value={value} onChange={setValue} hasError={!!args.error} />
       </FormField>
     )
   },
 }
 
 export const ヒントあり: Story = {
-  render: () => {
+  args: {
+    label: 'パスワード',
+    htmlFor: 'pw-hint',
+    hint: '8文字以上、英数字を含めてください',
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
     return (
-      <FormField label="パスワード" htmlFor="pw-hint" hint="8文字以上、英数字を含めてください">
-        <SampleInput id="pw-hint" value={value} onChange={setValue} placeholder="パスワードを入力" />
+      <FormField {...args}>
+        <SampleInput id={args.htmlFor} value={value} onChange={setValue} placeholder="パスワードを入力" />
       </FormField>
     )
   },
 }
 
 export const 必須マーク: Story = {
-  render: () => {
+  args: {
+    label: 'メールアドレス',
+    htmlFor: 'email-required',
+    required: true,
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
     return (
-      <FormField label="メールアドレス" htmlFor="email-required" required>
-        <SampleInput id="email-required" value={value} onChange={setValue} placeholder="example@mail.com" />
+      <FormField {...args}>
+        <SampleInput id={args.htmlFor} value={value} onChange={setValue} placeholder="example@mail.com" />
       </FormField>
     )
   },
 }
 
 export const Disabled状態のInput: Story = {
-  render: () => (
-    <FormField label="編集不可フィールド" htmlFor="disabled-field" hint="このフィールドは編集できません">
-      <SampleInput id="disabled-field" value="変更できない値" onChange={() => {}} disabled />
+  args: {
+    label: '編集不可フィールド',
+    htmlFor: 'disabled-field',
+    hint: 'このフィールドは編集できません',
+  },
+  render: (args) => (
+    <FormField {...args}>
+      <SampleInput id={args.htmlFor} value="変更できない値" onChange={() => {}} disabled />
     </FormField>
   ),
 }
 
 export const エラーとヒントの排他: Story = {
-  render: () => {
+  args: {
+    label: '確認用フィールド',
+    htmlFor: 'exclusive-field',
+    error: 'この値は使用できません',
+    hint: 'このヒントはエラー時には表示されません',
+  },
+  render: (args) => {
     const [value, setValue] = useState('test')
     return (
-      <FormField
-        label="確認用（エラーがあるのでヒントは非表示）"
-        htmlFor="exclusive-field"
-        error="この値は使用できません"
-        hint="このヒントはエラー時には表示されません"
-      >
-        <SampleInput id="exclusive-field" value={value} onChange={setValue} hasError />
+      <FormField {...args}>
+        <SampleInput id={args.htmlFor} value={value} onChange={setValue} hasError={!!args.error} />
       </FormField>
     )
   },

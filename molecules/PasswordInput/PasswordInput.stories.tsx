@@ -13,6 +13,13 @@ const meta: Meta<typeof PasswordInput> = {
       },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+    placeholder: { control: 'text' },
+    error: { control: 'text' },
+    required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px', maxWidth: '360px' }}><Story /></div>],
 }
 
@@ -20,87 +27,56 @@ export default meta
 type Story = StoryObj<typeof PasswordInput>
 
 export const デフォルト: Story = {
-  render: () => {
+  args: {
+    placeholder: 'パスワードを入力',
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
-    return (
-      <PasswordInput
-        value={value}
-        onChange={setValue}
-        placeholder="パスワードを入力"
-      />
-    )
+    return <PasswordInput {...args} value={value} onChange={setValue} />
   },
 }
 
 export const ラベルあり: Story = {
-  render: () => {
-    const [value, setValue] = useState('')
-    return (
-      <PasswordInput
-        label="パスワード"
-        id="password-with-label"
-        value={value}
-        onChange={setValue}
-        placeholder="8文字以上"
-        required
-      />
-    )
+  args: {
+    label: 'パスワード',
+    placeholder: '8文字以上',
+    required: true,
   },
-}
-
-export const ラベルなし: Story = {
-  render: () => {
-    const [value, setValue] = useState('password123')
-    return (
-      <PasswordInput
-        value={value}
-        onChange={setValue}
-        placeholder="パスワードを入力"
-      />
-    )
+  render: (args) => {
+    const [value, setValue] = useState('')
+    return <PasswordInput id="password-with-label" {...args} value={value} onChange={setValue} />
   },
 }
 
 export const エラーあり: Story = {
-  render: () => {
+  args: {
+    label: 'パスワード',
+    error: 'パスワードは8文字以上で入力してください',
+  },
+  render: (args) => {
     const [value, setValue] = useState('short')
-    return (
-      <PasswordInput
-        label="パスワード"
-        id="password-error"
-        value={value}
-        onChange={setValue}
-        error="パスワードは8文字以上で入力してください"
-      />
-    )
+    return <PasswordInput id="password-error" {...args} value={value} onChange={setValue} />
   },
 }
 
 export const Disabled: Story = {
-  render: () => (
-    <PasswordInput
-      label="パスワード（変更不可）"
-      id="password-disabled"
-      value="disabled-password"
-      onChange={() => {}}
-      disabled
-    />
+  args: {
+    label: 'パスワード（変更不可）',
+    disabled: true,
+  },
+  render: (args) => (
+    <PasswordInput id="password-disabled" {...args} value="disabled-password" onChange={() => {}} />
   ),
 }
 
 export const 新規パスワード: Story = {
-  render: () => {
+  args: {
+    label: '新しいパスワード',
+    placeholder: '新しいパスワードを入力',
+    required: true,
+  },
+  render: (args) => {
     const [value, setValue] = useState('')
-    return (
-      <PasswordInput
-        label="新しいパスワード"
-        id="new-password"
-        value={value}
-        onChange={setValue}
-        placeholder="新しいパスワードを入力"
-        autoComplete="new-password"
-        required
-      />
-    )
+    return <PasswordInput id="new-password" {...args} value={value} onChange={setValue} autoComplete="new-password" />
   },
 }

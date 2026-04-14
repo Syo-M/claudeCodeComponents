@@ -12,6 +12,9 @@ const meta: Meta<typeof ChipGroup> = {
       },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px', maxWidth: '600px' }}><Story /></div>],
 }
 
@@ -27,11 +30,12 @@ const sampleOptions = [
 ]
 
 export const インタラクティブ: Story = {
-  render: () => {
+  args: { label: 'ジャンル' },
+  render: (args) => {
     const [selectedIds, setSelectedIds] = useState<number[]>([])
     return (
       <ChipGroup
-        label="ジャンル"
+        {...args}
         options={sampleOptions}
         selectedIds={selectedIds}
         onToggle={(id) =>
@@ -45,11 +49,12 @@ export const インタラクティブ: Story = {
 }
 
 export const 選択済みあり: Story = {
-  render: () => {
+  args: { label: 'ジャンル' },
+  render: (args) => {
     const [selectedIds, setSelectedIds] = useState<number[]>([1, 3])
     return (
       <ChipGroup
-        label="ジャンル"
+        {...args}
         options={sampleOptions}
         selectedIds={selectedIds}
         onToggle={(id) =>

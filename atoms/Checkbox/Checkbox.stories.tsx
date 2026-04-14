@@ -10,6 +10,14 @@ const meta: Meta<typeof Checkbox> = {
       description: { component: 'カスタムデザインのチェックボックス。通常・エラー・中間・無効状態に対応。' },
     },
   },
+  argTypes: {
+    label: { control: 'text' },
+    hint: { control: 'text' },
+    error: { control: 'text' },
+    checked: { control: 'boolean' },
+    indeterminate: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px' }}><Story /></div>],
 }
 
@@ -17,33 +25,52 @@ export default meta
 type Story = StoryObj<typeof Checkbox>
 
 export const 基本: Story = {
-  render: () => {
-    const [checked, setChecked] = useState(false)
-    return <Checkbox label="利用規約に同意する" checked={checked} onChange={setChecked} />
+  args: {
+    label: '利用規約に同意する',
+    checked: false,
+  },
+  render: (args) => {
+    const [checked, setChecked] = useState(args.checked ?? false)
+    return <Checkbox key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
   },
 }
 
 export const チェック済み: Story = {
-  render: () => <Checkbox label="チェック済み" checked={true} onChange={() => {}} />,
+  args: { label: 'チェック済み', checked: true },
+  render: (args) => {
+    const [checked, setChecked] = useState(args.checked ?? true)
+    return <Checkbox key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
+  },
 }
 
 export const 中間状態: Story = {
-  render: () => <Checkbox label="一部選択中" checked={false} onChange={() => {}} indeterminate={true} />,
+  args: { label: '一部選択中', checked: false, indeterminate: true },
+  render: (args) => <Checkbox {...args} onChange={() => {}} />,
 }
 
 export const エラー: Story = {
-  render: () => <Checkbox label="同意が必要です" checked={false} onChange={() => {}} error="同意してください" />,
+  args: { label: '同意が必要です', checked: false, error: '同意してください' },
+  render: (args) => {
+    const [checked, setChecked] = useState(args.checked ?? false)
+    return <Checkbox key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
+  },
 }
 
 export const ヒント付き: Story = {
-  render: () => {
-    const [checked, setChecked] = useState(false)
-    return <Checkbox label="メールマガジンを受け取る" checked={checked} onChange={setChecked} hint="いつでも解除できます" />
+  args: {
+    label: 'メールマガジンを受け取る',
+    checked: false,
+    hint: 'いつでも解除できます',
+  },
+  render: (args) => {
+    const [checked, setChecked] = useState(args.checked ?? false)
+    return <Checkbox key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
   },
 }
 
 export const 無効: Story = {
-  render: () => <Checkbox label="変更不可" checked={true} onChange={() => {}} disabled />,
+  args: { label: '変更不可', checked: true, disabled: true },
+  render: (args) => <Checkbox {...args} onChange={() => {}} />,
 }
 
 export const 複数チェックボックス: Story = {

@@ -10,10 +10,12 @@ const meta: Meta<typeof SortSelector> = {
     docs: {
       description: {
         component:
-          'ソート・表示切替に使う横並びボタングループ Molecule。' +
-          'RadioGroup よりコンパクトで視覚的に目立つ切替 UI を提供する。',
+          'ソート・表示切替に使う横並びボタングループ Molecule。RadioGroup よりコンパクトで視覚的に目立つ切替 UI を提供する。',
       },
     },
+  },
+  argTypes: {
+    value: { control: 'text' },
   },
   decorators: [(Story) => <div style={{ padding: '24px' }}><Story /></div>],
 }
@@ -21,28 +23,34 @@ const meta: Meta<typeof SortSelector> = {
 export default meta
 type Story = StoryObj<typeof SortSelector>
 
+const sortOptions = [
+  { value: 'date-desc', label: '日付が新しい順' },
+  { value: 'date-asc',  label: '日付が古い順' },
+  { value: 'name-asc',  label: '名前順' },
+]
+
 export const Default: Story = {
-  render: () => {
-    const [sort, setSort] = useState('date-desc')
+  args: { value: 'date-desc' },
+  render: (args) => {
+    const [sort, setSort] = useState(args.value ?? 'date-desc')
     return (
       <SortSelector
+        key={args.value}
         value={sort}
         onChange={setSort}
-        options={[
-          { value: 'date-desc', label: '日付が新しい順' },
-          { value: 'date-asc',  label: '日付が古い順' },
-          { value: 'name-asc',  label: '名前順' },
-        ]}
+        options={sortOptions}
       />
     )
   },
 }
 
 export const 二択: Story = {
-  render: () => {
-    const [view, setView] = useState('grid')
+  args: { value: 'grid' },
+  render: (args) => {
+    const [view, setView] = useState(args.value ?? 'grid')
     return (
       <SortSelector
+        key={args.value}
         value={view}
         onChange={setView}
         options={[
@@ -55,10 +63,12 @@ export const 二択: Story = {
 }
 
 export const タブ切替風: Story = {
-  render: () => {
-    const [tab, setTab] = useState('all')
+  args: { value: 'all' },
+  render: (args) => {
+    const [tab, setTab] = useState(args.value ?? 'all')
     return (
       <SortSelector
+        key={args.value}
         value={tab}
         onChange={setTab}
         options={[

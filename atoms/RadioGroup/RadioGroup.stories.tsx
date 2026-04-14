@@ -10,6 +10,11 @@ const meta: Meta<typeof RadioGroup> = {
       description: { component: 'ラジオボタングループ Atom。縦・横並び、ヒント付き、エラー状態に対応。' },
     },
   },
+  argTypes: {
+    legend: { control: 'text' },
+    error: { control: 'text' },
+    inline: { control: 'boolean' },
+  },
   decorators: [(Story) => <div style={{ padding: '16px', maxWidth: '400px' }}><Story /></div>],
 }
 
@@ -23,19 +28,27 @@ const planOptions = [
 ]
 
 export const 縦並び: Story = {
-  render: () => {
+  args: {
+    legend: 'プランを選択',
+    inline: false,
+  },
+  render: (args) => {
     const [value, setValue] = useState('free')
-    return <RadioGroup name="plan" legend="プランを選択" options={planOptions} value={value} onChange={setValue} />
+    return <RadioGroup {...args} name="plan" options={planOptions} value={value} onChange={setValue} />
   },
 }
 
 export const 横並び: Story = {
-  render: () => {
+  args: {
+    legend: '性別',
+    inline: true,
+  },
+  render: (args) => {
     const [value, setValue] = useState('male')
     return (
       <RadioGroup
+        {...args}
         name="gender"
-        legend="性別"
         options={[
           { value: 'male', label: '男性' },
           { value: 'female', label: '女性' },
@@ -43,16 +56,20 @@ export const 横並び: Story = {
         ]}
         value={value}
         onChange={setValue}
-        inline
       />
     )
   },
 }
 
 export const エラー: Story = {
-  render: () => (
-    <RadioGroup name="plan-err" legend="プランを選択" options={planOptions} value="" onChange={() => {}} error="選択してください" />
-  ),
+  args: {
+    legend: 'プランを選択',
+    error: '選択してください',
+  },
+  render: (args) => {
+    const [value, setValue] = useState('')
+    return <RadioGroup {...args} name="plan-err" options={planOptions} value={value} onChange={setValue} />
+  },
 }
 
 export const 一部無効: Story = {

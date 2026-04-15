@@ -1,0 +1,85 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapperDisabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* 視覚的に隠す（スクリーンリーダーにはアクセシブル） */
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+/* ── トラック ── */
+.track {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-muted);
+  transition: background 200ms ease;
+}
+
+.trackMd {
+  width: 44px;
+  height: 24px;
+}
+
+.trackSm {
+  width: 36px;
+  height: 20px;
+}
+
+.trackChecked {
+  background: var(--color-accent);
+}
+
+/* ── サム（円） ── */
+.thumb {
+  position: absolute;
+  top: 50%;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform 200ms ease;
+  transform: translateY(-50%) translateX(2px);
+}
+
+.thumbMd {
+  width: 20px;
+  height: 20px;
+}
+
+.thumbSm {
+  width: 16px;
+  height: 16px;
+}
+
+.thumbCheckedMd {
+  transform: translateY(-50%) translateX(22px);
+}
+
+.thumbCheckedSm {
+  transform: translateY(-50%) translateX(18px);
+}

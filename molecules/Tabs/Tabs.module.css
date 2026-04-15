@@ -1,0 +1,86 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabList {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+
+/* ---- line バリアント（アンダーライン型） ---- */
+.line {
+  border-bottom: 2px solid var(--color-border);
+}
+
+.line .tab {
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  transition: color 150ms, border-color 150ms;
+  white-space: nowrap;
+}
+
+.line .tab:hover {
+  color: var(--color-text);
+}
+
+.line .tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ---- contained バリアント（塗りつぶし型） ---- */
+.contained {
+  background: var(--color-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  gap: var(--space-1);
+}
+
+.contained .tab {
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-sub);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  transition: background 150ms, color 150ms;
+  white-space: nowrap;
+}
+
+.contained .tab:hover {
+  color: var(--color-text);
+}
+
+.contained .tab.active {
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- 共通 ---- */
+.tab:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.tab.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.panel {
+  padding: var(--space-4) 0;
+}

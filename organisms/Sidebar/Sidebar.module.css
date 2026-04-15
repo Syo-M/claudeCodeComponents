@@ -1,0 +1,169 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  min-height: 100%;
+  background: var(--color-surface-raised);
+  border-right: 1px solid var(--color-border);
+  transition: width 200ms ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.collapsed {
+  width: 64px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  min-height: 56px;
+  gap: var(--space-2);
+}
+
+.logo {
+  flex: 1;
+  min-width: 0;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--font-size-md);
+}
+
+.collapseBtn {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background 150ms, transform 200ms;
+}
+
+.collapseBtn:hover {
+  background: var(--color-muted);
+}
+
+.collapseBtnCollapsed {
+  transform: rotate(180deg);
+}
+
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-2) 0;
+}
+
+.list,
+.subList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  padding: 0;
+}
+
+.navItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  height: 44px;
+  text-decoration: none;
+  color: var(--color-text-sub);
+  font-size: var(--font-size-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 150ms, color 150ms;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.navItem:hover {
+  background: var(--color-muted);
+  color: var(--color-text);
+}
+
+.navItem.active {
+  color: var(--color-accent);
+  background: var(--color-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.navItem:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevron {
+  flex-shrink: 0;
+  display: flex;
+  color: var(--color-text-disabled);
+  transition: transform 200ms ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.subList {
+  padding-left: calc(var(--space-4) + 20px + var(--space-3));
+  padding-bottom: var(--space-1);
+}
+
+.subItem {
+  display: block;
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-text-sub);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: color 150ms;
+  border-radius: var(--radius-sm);
+}
+
+.subItem:hover {
+  color: var(--color-text);
+  background: var(--color-muted);
+}
+
+.subItemActive {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+}

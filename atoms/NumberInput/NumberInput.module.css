@@ -1,0 +1,120 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.inputRow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.input {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  min-height: 44px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  font-size: var(--font-size-md);
+  font-family: inherit;
+  color: var(--color-text);
+  text-align: center;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  /* ネイティブ矢印を非表示 */
+  appearance: textfield;
+}
+
+.input::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
+  position: relative;
+  z-index: 1;
+}
+
+.input:disabled {
+  background: var(--color-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.inputError {
+  border-color: var(--color-error);
+}
+
+.inputError:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+}
+
+.stepButton {
+  width: 40px;
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease;
+  flex-shrink: 0;
+}
+
+.stepButton:hover:not(:disabled) {
+  background: var(--color-muted);
+}
+
+.stepButton:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  background: var(--color-muted);
+}
+
+.stepButtonMinus {
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.stepButtonPlus {
+  border-left: none;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.stepButtonError {
+  border-color: var(--color-error);
+}
+
+.errorText {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin: 0;
+}
+
+.hintText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}

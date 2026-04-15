@@ -1,0 +1,91 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.inputRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-2) var(--space-8) var(--space-2) var(--space-8);
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  box-sizing: border-box;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.input:disabled {
+  background: var(--color-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.searchButton {
+  position: absolute;
+  left: var(--space-2);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: color 150ms ease;
+}
+
+.searchButton:hover:not(:disabled) {
+  color: var(--color-text);
+}
+
+.searchButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.clearButton {
+  position: absolute;
+  right: var(--space-2);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--color-text-disabled);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: color 150ms ease;
+}
+
+.clearButton:hover:not(:disabled) {
+  color: var(--color-text);
+}
+
+.clearButton:disabled {
+  cursor: not-allowed;
+}

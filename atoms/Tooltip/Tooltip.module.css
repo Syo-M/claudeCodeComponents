@@ -1,0 +1,53 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wrapperDisabled {
+  /* disabled 時はホバー無効 */
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  white-space: nowrap;
+  padding: var(--space-1) var(--space-2);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  transition-delay: 150ms;
+}
+
+.wrapper:hover .tooltip {
+  opacity: 1;
+}
+
+/* placement バリアント */
+.top {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right {
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,18 @@
+.kbd {
+  font-family: monospace;
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sm {
+  font-size: 10px;
+  padding: 1px 4px;
+}

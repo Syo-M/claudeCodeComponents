@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect } from 'storybook/test'
 import { Spinner } from './Spinner'
 
 const meta: Meta<typeof Spinner> = {
@@ -24,6 +25,9 @@ type Story = StoryObj<typeof Spinner>
 // ── 基本 ──
 export const デフォルト: Story = {
   args: { size: 'md', color: 'current' },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.firstChild).toBeTruthy()
+  },
 }
 
 // ── 3サイズ ──

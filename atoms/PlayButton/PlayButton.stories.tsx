@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { PlayButton } from './PlayButton'
 
 const meta: Meta<typeof PlayButton> = {
@@ -22,6 +23,10 @@ type Story = StoryObj<typeof PlayButton>
 
 export const 停止中: Story = {
   args: { isPlaying: false, onClick: () => {} },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button')).toBeInTheDocument()
+  },
 }
 
 export const 再生中: Story = {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { SortSelector } from './SortSelector'
 
 const meta: Meta<typeof SortSelector> = {
@@ -41,6 +42,10 @@ export const Default: Story = {
         options={sortOptions}
       />
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('日付が新しい順')).toBeInTheDocument()
   },
 }
 

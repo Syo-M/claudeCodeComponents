@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Slider } from './Slider'
 
 const meta: Meta<typeof Slider> = {
@@ -40,6 +41,10 @@ export const Default: Story = {
         <p style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>値: {val}</p>
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('スライダー')).toBeInTheDocument()
   },
 }
 

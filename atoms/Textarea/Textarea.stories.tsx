@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Textarea } from './Textarea'
 
 const meta: Meta<typeof Textarea> = {
@@ -39,6 +40,10 @@ export const 通常: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value ?? '')
     return <Textarea key={String(args.value)} {...args} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('コメント')).toBeInTheDocument()
   },
 }
 

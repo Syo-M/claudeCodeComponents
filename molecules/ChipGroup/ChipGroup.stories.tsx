@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { ChipGroup } from './ChipGroup'
 
 const meta: Meta<typeof ChipGroup> = {
@@ -45,6 +46,10 @@ export const インタラクティブ: Story = {
         }
       />
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('ジャンル')).toBeInTheDocument()
   },
 }
 

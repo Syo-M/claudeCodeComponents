@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Chip } from './Chip'
 
 const meta: Meta<typeof Chip> = {
@@ -31,6 +32,10 @@ export const Selectable: Story = {
         <Chip key={String(args.selected)} {...args} selected={selected} onSelect={() => setSelected(s => !s)} />
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('選択可能')).toBeInTheDocument()
   },
 }
 

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Checkbox } from './Checkbox'
 
 const meta: Meta<typeof Checkbox> = {
@@ -32,6 +33,10 @@ export const 基本: Story = {
   render: (args) => {
     const [checked, setChecked] = useState(args.checked ?? false)
     return <Checkbox key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('利用規約に同意する')).toBeInTheDocument()
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { PageHeader } from './PageHeader'
 
 const meta: Meta<typeof PageHeader> = {
@@ -22,6 +23,10 @@ type Story = StoryObj<typeof PageHeader>
 export const ブランドのみ: Story = {
   args: {
     brand: 'MyApp',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('MyApp')).toBeInTheDocument()
   },
 }
 

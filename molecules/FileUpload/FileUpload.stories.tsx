@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { FileUpload } from './FileUpload'
 
 const meta: Meta<typeof FileUpload> = {
@@ -21,6 +22,10 @@ export const 基本: Story = {
   render: () => (
     <FileUpload onFiles={(files) => console.log('選択されたファイル:', files.map(f => f.name))} />
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button')).toBeInTheDocument()
+  },
 }
 
 export const 複数ファイル: Story = {

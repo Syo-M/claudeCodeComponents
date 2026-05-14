@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Tooltip } from './Tooltip'
 
 const triggerStyle: React.CSSProperties = {
@@ -47,6 +48,10 @@ export const 上: Story = {
       <button style={triggerStyle}>ホバーしてください</button>
     </Tooltip>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button', { name: 'ホバーしてください' })).toBeInTheDocument()
+  },
 }
 
 export const 下: Story = {

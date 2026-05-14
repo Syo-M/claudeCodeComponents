@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Kbd } from './Kbd'
 
 const meta: Meta<typeof Kbd> = {
@@ -34,6 +35,10 @@ export const 基本: Story = {
     </div>
   ),
   args: {},
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('Enter')).toBeInTheDocument()
+  },
 }
 
 export const サイズsm: Story = {

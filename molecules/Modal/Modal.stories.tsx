@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Modal } from './Modal'
 
 const meta: Meta<typeof Modal> = {
@@ -55,6 +56,10 @@ export const Playground: Story = {
       </p>
     </Modal>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('モーダルタイトル')).toBeInTheDocument()
+  },
 }
 
 /* ── 開閉ボタン付きデモ ── */

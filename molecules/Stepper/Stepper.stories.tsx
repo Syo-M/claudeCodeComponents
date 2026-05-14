@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Stepper } from './Stepper'
 
 const meta: Meta<typeof Stepper> = {
@@ -49,6 +50,10 @@ export const インタラクティブHorizontal: Story = {
         </div>
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('アカウント')).toBeInTheDocument()
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { EmptyState } from './EmptyState'
 
 const meta: Meta<typeof EmptyState> = {
@@ -27,6 +28,10 @@ type Story = StoryObj<typeof EmptyState>
 export const タイトルのみ: Story = {
   args: {
     title: 'データがありません',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('データがありません')).toBeInTheDocument()
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { ProgressRing } from './ProgressRing'
 
 const meta: Meta<typeof ProgressRing> = {
@@ -28,6 +29,9 @@ type Story = StoryObj<typeof ProgressRing>
 
 export const Default: Story = {
   args: { progress: 0.6, size: 80, strokeWidth: 8 },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('svg')).toBeInTheDocument()
+  },
 }
 
 export const 中央テキスト付き: Story = {

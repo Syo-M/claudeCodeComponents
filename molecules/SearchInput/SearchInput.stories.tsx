@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { SearchInput } from './SearchInput'
 
 const meta: Meta<typeof SearchInput> = {
@@ -41,6 +42,10 @@ export const 基本: Story = {
   },
   args: {
     placeholder: '検索…',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByPlaceholderText('検索…')).toBeInTheDocument()
   },
 }
 

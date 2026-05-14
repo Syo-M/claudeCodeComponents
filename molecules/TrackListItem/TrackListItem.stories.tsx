@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { TrackListItem } from './TrackListItem'
 
 const meta: Meta<typeof TrackListItem> = {
@@ -23,6 +24,10 @@ export const Default: Story = {
     index: 1,
     label: 'Chill Music 01',
     onClick: () => {},
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('Chill Music 01')).toBeInTheDocument()
   },
 }
 

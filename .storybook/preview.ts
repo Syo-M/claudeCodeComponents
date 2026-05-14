@@ -16,7 +16,13 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      source: { type: 'auto', language: 'tsx' },
+      codePanel: true,
+    },
+    a11y: { test: 'todo' },
   },
+  tags: ['autodocs'],
 }
 
 export default preview

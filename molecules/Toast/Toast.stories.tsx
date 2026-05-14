@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Toast, ToastContainer, useToast } from './Toast'
 
 const meta: Meta<typeof Toast> = {
@@ -37,6 +38,10 @@ export const Success: Story = {
     variant: 'success',
     duration: 0,
     onClose: noop,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('保存しました')).toBeInTheDocument()
   },
 }
 

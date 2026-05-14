@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Button } from './Button'
 
 const meta: Meta<typeof Button> = {
@@ -22,7 +23,14 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof Button>
 
-export const Primary: Story = { args: { children: 'プライマリ', variant: 'primary' } }
+export const Primary: Story = {
+  args: { children: 'プライマリ', variant: 'primary' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = await canvas.findByRole('button', { name: 'プライマリ' })
+    await expect(button).toBeEnabled()
+  },
+}
 export const Secondary: Story = { args: { children: 'セカンダリ', variant: 'secondary' } }
 export const Ghost: Story = { args: { children: 'ゴースト', variant: 'ghost' } }
 export const Danger: Story = { args: { children: '削除', variant: 'danger' } }

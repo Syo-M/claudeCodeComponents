@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { HamburgerButton } from './HamburgerButton'
 
 const meta: Meta<typeof HamburgerButton> = {
@@ -33,6 +34,10 @@ export const インタラクティブ: Story = {
         </span>
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button')).toBeInTheDocument()
   },
 }
 

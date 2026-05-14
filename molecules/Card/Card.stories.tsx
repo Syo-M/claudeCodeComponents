@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Card } from './Card'
 
 const meta: Meta<typeof Card> = {
@@ -41,6 +42,10 @@ export const デフォルト: Story = {
       </div>
     ),
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText(/カードのコンテンツ/)).toBeInTheDocument()
+  },
 }
 
 export const Outlined: Story = {

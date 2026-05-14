@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { ErrorMessage } from './ErrorMessage'
 
 const meta: Meta<typeof ErrorMessage> = {
@@ -33,6 +34,10 @@ export const 短いメッセージ: Story = {
       </div>
     ),
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('このフィールドは必須です。')).toBeInTheDocument()
+  },
 }
 
 // ── 長いメッセージ ──

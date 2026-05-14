@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { IconButton } from './IconButton'
 
 const meta: Meta<typeof IconButton> = {
@@ -23,6 +24,10 @@ type Story = StoryObj<typeof IconButton>
 
 export const Default: Story = {
   args: { children: '⚙️', 'aria-label': '設定', variant: 'default' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button', { name: '設定' })).toBeInTheDocument()
+  },
 }
 
 export const Ghost: Story = {

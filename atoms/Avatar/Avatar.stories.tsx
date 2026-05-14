@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Avatar } from './Avatar'
 
 const meta: Meta<typeof Avatar> = {
@@ -29,6 +30,11 @@ export const 画像あり: Story = {
     src: 'https://i.pravatar.cc/150?img=3',
     alt: 'ユーザーアイコン',
     size: 'md',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const img = await canvas.findByRole('img', { name: 'ユーザーアイコン' })
+    await expect(img).toBeInTheDocument()
   },
 }
 

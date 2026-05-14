@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { InfoCard } from './InfoCard'
 
 const meta: Meta<typeof InfoCard> = {
@@ -30,6 +31,10 @@ export const デフォルト: Story = {
   args: {
     label: '総ユーザー数',
     value: '1,284',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('総ユーザー数')).toBeInTheDocument()
   },
 }
 

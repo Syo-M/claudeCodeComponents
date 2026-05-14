@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { ProjectCard } from './ProjectCard'
 
 const meta: Meta<typeof ProjectCard> = {
@@ -31,6 +32,10 @@ export const Default: Story = {
       { label: 'GitHub', href: 'https://github.com/' },
       { label: 'デモを見る', href: 'https://example.com/' },
     ],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('Engineer Dashboard')).toBeInTheDocument()
   },
 }
 

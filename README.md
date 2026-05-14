@@ -103,7 +103,8 @@ React + TypeScript で構築した再利用可能な UI コンポーネントラ
 |---|---|
 | UI ライブラリ | React 18 |
 | 言語 | TypeScript |
-| カタログツール | Storybook 8 |
+| カタログツール | Storybook 10 |
+| テスト | Vitest 4(Storybook addon-vitest 経由でブラウザ実行) |
 | ビルド | Vite |
 
 ---
@@ -116,6 +117,25 @@ npm run storybook
 ```
 
 http://localhost:6006 で Storybook が起動します。
+
+### コードパネル
+
+各ストーリーの「Docs」ページで `Show code` ボタンを押すと、そのストーリーの JSX コードが表示され、`Copy code` でクリップボードに取得できます。実装時の参考にしてください。
+
+### コンポーネントテスト
+
+各ストーリーの `play` 関数を Vitest + Playwright(Chromium)で実行します。
+
+```bash
+npm test          # 1 回だけ実行
+npm run test:watch  # ウォッチモード
+```
+
+初回のみ Playwright のブラウザインストールが必要です。
+
+```bash
+npx playwright install chromium
+```
 
 ---
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { CopyButton } from './CopyButton'
 
 const meta: Meta<typeof CopyButton> = {
@@ -29,6 +30,10 @@ export const Default: Story = {
     text: 'サンプルテキスト',
     label: 'コピー',
     copiedLabel: 'コピー済み',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('button')).toBeInTheDocument()
   },
 }
 

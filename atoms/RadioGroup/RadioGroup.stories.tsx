@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { RadioGroup } from './RadioGroup'
 
 const meta: Meta<typeof RadioGroup> = {
@@ -35,6 +36,10 @@ export const 縦並び: Story = {
   render: (args) => {
     const [value, setValue] = useState('free')
     return <RadioGroup {...args} name="plan" options={planOptions} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('プランを選択')).toBeInTheDocument()
   },
 }
 

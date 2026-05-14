@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { AuthCard } from './AuthCard'
 
 const meta: Meta<typeof AuthCard> = {
@@ -67,6 +68,10 @@ export const ログイン: Story = {
     title: 'ログイン',
     subtitle: 'アカウントにサインインしてください',
     children: <SampleForm />,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('ログイン')).toBeInTheDocument()
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect } from 'storybook/test'
 import { InfoBar } from './InfoBar'
 
 const meta: Meta<typeof InfoBar> = {
@@ -17,6 +18,11 @@ const meta: Meta<typeof InfoBar> = {
 export default meta
 type Story = StoryObj<typeof InfoBar>
 
-export const 大阪: Story = { args: {} }
+export const 大阪: Story = {
+  args: {},
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.firstChild).toBeTruthy()
+  },
+}
 export const 東京: Story = { args: { latitude: 35.6895, longitude: 139.6917, locationLabel: '東京' } }
 export const 秒なし: Story = { args: { showSeconds: false } }

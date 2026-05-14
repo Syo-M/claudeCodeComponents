@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect } from 'storybook/test'
 import { SkeletonBlock } from './SkeletonBlock'
 
 const meta: Meta<typeof SkeletonBlock> = {
@@ -25,6 +26,9 @@ type Story = StoryObj<typeof SkeletonBlock>
 
 export const Default: Story = {
   args: { width: '240px', height: '1em' },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.firstChild).toBeTruthy()
+  },
 }
 
 export const テキスト行3行: Story = {

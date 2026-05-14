@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { FormField } from './FormField'
 
 const meta: Meta<typeof FormField> = {
@@ -80,6 +81,10 @@ export const 通常: Story = {
         <SampleInput id={args.htmlFor} value={value} onChange={setValue} placeholder="山田 太郎" />
       </FormField>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('名前')).toBeInTheDocument()
   },
 }
 

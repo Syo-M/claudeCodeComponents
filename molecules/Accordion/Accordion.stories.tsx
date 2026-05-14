@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Accordion } from './Accordion'
 
 const meta: Meta<typeof Accordion> = {
@@ -28,6 +29,10 @@ const accordionItems = [
 
 export const 基本1つのみ展開: Story = {
   render: () => <Accordion items={accordionItems} allowMultiple={false} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('よくある質問 1')).toBeInTheDocument()
+  },
 }
 
 export const 複数同時展開: Story = {

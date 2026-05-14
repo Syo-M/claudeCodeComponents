@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Breadcrumb } from './Breadcrumb'
 
 const meta: Meta<typeof Breadcrumb> = {
@@ -23,6 +24,10 @@ export const 基本2階層: Story = {
       { label: 'ホーム', href: '/' },
       { label: '設定' },
     ],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('設定')).toBeInTheDocument()
   },
 }
 

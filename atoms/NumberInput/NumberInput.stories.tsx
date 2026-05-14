@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { NumberInput } from './NumberInput'
 
 const meta: Meta<typeof NumberInput> = {
@@ -41,6 +42,10 @@ export const デフォルト: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value ?? 0)
     return <NumberInput key={String(args.value)} {...args} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('数量')).toBeInTheDocument()
   },
 }
 

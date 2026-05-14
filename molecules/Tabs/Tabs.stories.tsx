@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Tabs } from './Tabs'
 
 const meta: Meta<typeof Tabs> = {
@@ -28,6 +29,10 @@ const tabItems = [
 
 export const Lineバリアント: Story = {
   render: () => <Tabs items={tabItems} variant="line" />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('tab', { name: '概要' })).toBeInTheDocument()
+  },
 }
 
 export const Containedバリアント: Story = {

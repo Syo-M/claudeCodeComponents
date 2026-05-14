@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { FavoritesBar, type Favorite } from './FavoritesBar'
 
 const meta: Meta<typeof FavoritesBar> = {
@@ -40,6 +41,10 @@ export const インタラクティブ: Story = {
         )}
       </div>
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('ポートレート基本')).toBeInTheDocument()
   },
 }
 

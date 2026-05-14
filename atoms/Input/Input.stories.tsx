@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Input } from './Input'
 
 const meta: Meta<typeof Input> = {
@@ -37,6 +38,10 @@ export const 基本: Story = {
   render: (args) => {
     const [value, setValue] = useState(args.value ?? '')
     return <Input key={args.value} {...args} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('名前')).toBeInTheDocument()
   },
 }
 

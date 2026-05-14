@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Select } from './Select'
 
 const meta: Meta<typeof Select> = {
@@ -40,6 +41,10 @@ export const 基本: Story = {
   render: (args) => {
     const [value, setValue] = useState('')
     return <Select {...args} options={prefectures} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByLabelText('都道府県')).toBeInTheDocument()
   },
 }
 

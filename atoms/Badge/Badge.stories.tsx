@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Badge } from './Badge'
 
 const meta: Meta<typeof Badge> = {
@@ -17,7 +18,13 @@ const meta: Meta<typeof Badge> = {
 export default meta
 type Story = StoryObj<typeof Badge>
 
-export const Default: Story = { args: { children: 'デフォルト' } }
+export const Default: Story = {
+  args: { children: 'デフォルト' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('デフォルト')).toBeInTheDocument()
+  },
+}
 export const Success: Story = { args: { children: '成功', variant: 'success' } }
 export const Warning: Story = { args: { children: '注意', variant: 'warning' } }
 export const Error: Story = { args: { children: 'エラー', variant: 'error' } }

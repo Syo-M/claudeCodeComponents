@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Link } from './Link'
 
 const meta: Meta<typeof Link> = {
@@ -28,6 +29,10 @@ export const デフォルト: Story = {
     href: '#',
     children: 'リンクテキスト',
     variant: 'default',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('link', { name: 'リンクテキスト' })).toBeInTheDocument()
   },
 }
 

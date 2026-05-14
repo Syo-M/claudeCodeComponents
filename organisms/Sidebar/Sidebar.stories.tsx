@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Sidebar } from './Sidebar'
 
 const meta: Meta<typeof Sidebar> = {
@@ -60,6 +61,10 @@ export const 展開: Story = {
       </div>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('ホーム')).toBeInTheDocument()
+  },
 }
 
 export const 折りたたみ: Story = {

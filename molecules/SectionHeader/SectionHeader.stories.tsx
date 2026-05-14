@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { SectionHeader } from './SectionHeader'
 
 const meta: Meta<typeof SectionHeader> = {
@@ -28,6 +29,10 @@ type Story = StoryObj<typeof SectionHeader>
 export const タイトルのみ: Story = {
   args: {
     title: 'セクションタイトル',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('セクションタイトル')).toBeInTheDocument()
   },
 }
 

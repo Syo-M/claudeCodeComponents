@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { TagBadge } from './TagBadge'
 
 const meta: Meta<typeof TagBadge> = {
@@ -22,6 +23,10 @@ type Story = StoryObj<typeof TagBadge>
 
 export const Default: Story = {
   args: { label: 'タグ', color: 'default' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('タグ')).toBeInTheDocument()
+  },
 }
 
 export const Notionカラー一覧: Story = {

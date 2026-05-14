@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Switch } from './Switch'
 
 const meta: Meta<typeof Switch> = {
@@ -31,6 +32,10 @@ export const デフォルト: Story = {
   render: (args) => {
     const [checked, setChecked] = useState(args.checked ?? false)
     return <Switch key={String(args.checked)} {...args} checked={checked} onChange={setChecked} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('switch')).toBeInTheDocument()
   },
 }
 

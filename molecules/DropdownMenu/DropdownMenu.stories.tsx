@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { DropdownMenu } from './DropdownMenu'
 
 const meta: Meta<typeof DropdownMenu> = {
@@ -47,6 +48,10 @@ export const 基本: Story = {
       items={baseItems}
     />
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText(/メニューを開く/)).toBeInTheDocument()
+  },
 }
 
 export const 右寄せ: Story = {

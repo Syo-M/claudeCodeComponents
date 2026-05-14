@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { PasswordInput } from './PasswordInput'
 
 const meta: Meta<typeof PasswordInput> = {
@@ -33,6 +34,10 @@ export const デフォルト: Story = {
   render: (args) => {
     const [value, setValue] = useState('')
     return <PasswordInput {...args} value={value} onChange={setValue} />
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByPlaceholderText('パスワードを入力')).toBeInTheDocument()
   },
 }
 

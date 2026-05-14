@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect } from 'storybook/test'
 import { DateTime } from './DateTime'
 
 const meta: Meta<typeof DateTime> = {
@@ -19,6 +20,9 @@ type Story = StoryObj<typeof DateTime>
 
 export const 日本語: Story = {
   args: { locale: 'ja-JP', showSeconds: true },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.firstChild).toBeTruthy()
+  },
 }
 
 export const 秒なし: Story = {

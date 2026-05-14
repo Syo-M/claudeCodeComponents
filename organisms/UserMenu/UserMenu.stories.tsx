@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { UserMenu } from './UserMenu'
 
 const meta: Meta<typeof UserMenu> = {
@@ -36,6 +37,10 @@ export const デフォルト: Story = {
   args: {
     displayName: '山田 太郎',
     email: 'taro@example.com',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('山田 太郎')).toBeInTheDocument()
   },
 }
 

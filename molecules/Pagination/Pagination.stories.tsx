@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
+import { expect, within } from 'storybook/test'
 import { Pagination } from './Pagination'
 
 const meta: Meta<typeof Pagination> = {
@@ -29,6 +30,10 @@ export const 基本: Story = {
         onChange={setPage}
       />
     )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('navigation')).toBeInTheDocument()
   },
 }
 

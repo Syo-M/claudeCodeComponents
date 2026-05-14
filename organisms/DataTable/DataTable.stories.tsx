@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { DataTable } from './DataTable'
 import type { DataTableColumn } from './DataTable'
 
@@ -70,6 +71,10 @@ export const 基本: Story = {
       keyExtractor={row => row.id}
     />
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByText('山田 太郎')).toBeInTheDocument()
+  },
 }
 
 export const クリッカブル行: Story = {

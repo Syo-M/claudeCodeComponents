@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, within } from 'storybook/test'
 import { Divider } from './Divider'
 
 const meta: Meta<typeof Divider> = {
@@ -33,6 +34,10 @@ export const Horizontal: Story = {
       </div>
     ),
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(await canvas.findByRole('separator')).toBeInTheDocument()
+  },
 }
 
 // ── vertical ──
